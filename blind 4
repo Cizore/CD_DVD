@@ -1,10 +1,19 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # Initialize a defaultdict where each value is a list
         ans = collections.defaultdict(list)
 
+        # Iterate through each string in the input list
         for s in strs:
+            # Initialize a list of 26 zeros to represent the count of each letter (a-z)
             count = [0] * 26
+            # Iterate through each character in the string
             for c in s:
+                # Increment the count for the corresponding character
                 count[ord(c) - ord("a")] += 1
+            # Use the tuple of counts as the key in the dictionary
+            # Append the original string to the list corresponding to this key
             ans[tuple(count)].append(s)
+
+        # Return all the grouped anagrams as a list of lists
         return ans.values()
